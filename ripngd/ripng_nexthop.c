@@ -165,11 +165,14 @@ void ripng_rte_send(struct list *ripng_rte_list, struct interface *ifp,
 			 * address,
 			 * it should be treated as 0:0:0:0:0:0:0:0.
 			 */
+			 /*    Alteração JML, março 2026
 			if (!IN6_IS_ADDR_LINKLOCAL(NEXTHOP_OUT_PTR(data)))
 				last_nexthop = myself_nexthop;
 			else
-				last_nexthop = *NEXTHOP_OUT_PTR(data);
-
+				last_nexthop = *NEXTHOP_OUT_PTR(data);*/
+			
+			last_nexthop = myself_nexthop;    // JML, março 2026
+				
 			num = ripng_write_rte(num, s, NULL, &last_nexthop, 0,
 					      RIPNG_METRIC_NEXTHOP);
 		} else {
